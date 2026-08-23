@@ -1,0 +1,38 @@
+# Decorator
+def border(func):
+    def wrapper(self):
+        print("-----------")
+        func(self)
+        print("-----------")
+    return wrapper
+
+class Report:
+
+    # Constructor
+    def __init__(self, title, content):
+        self.title = title
+        self.content = content
+
+    # Class method
+    @classmethod
+    def template(cls):
+        print("Simple Report")
+
+    # Decorated method
+    @border
+    def show(self):
+        print("Title:", self.title)
+        print("Content:", self.content)
+
+    # Magic method
+    def __str__(self):
+        return self.title
+
+# Main
+Report.template()
+
+r = Report("Python Report", "Assignment completed")
+
+r.show()
+
+print(r)
